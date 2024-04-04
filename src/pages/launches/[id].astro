@@ -1,0 +1,83 @@
+---
+import LayoutPage from "../../layouts/LayoutPage.astro";
+import CargarImg from "../../../public/CargarImg.astro";
+import { getLaunchById, getLaunches } from "../../services/spacex.ts";
+
+// para utilizar el servidor en esta parte, y sea de forma dinamica
+export const prerender = false;
+const { id } = Astro.params;
+
+/* if(!id) return Astro.redirect('/launches'); //solo para el servidor */
+let launch;
+
+if (id) {
+  launch = await getLaunchById({ id });
+}
+
+/* export async function getStaticPaths(){
+
+    const launches = await getLaunches();
+
+    /*
+    //forma estatica
+      return launches.map(launch => ({
+        params: {id: launch.id}
+    })) */
+/*
+    //forma manual 
+      return [
+        {params: {id: "5eb87cd9ffd86e000604b32a"}}
+    ]
+} */
+---
+
+<LayoutPage title={`Lanzamiento ${id}`}>
+  <article class="w-5/6 mx-auto py-0 mt-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="m-16">
+        <img
+          src={launch?.links?.patch?.small}
+          alt={`Emblema del lanzamiento ${id}`}
+          class="w-full"
+        />
+      </div>
+      <div class="flex flex-col justify-center">
+        <h2 class="text-3xl font-semibold text-white">
+          Lanzamiento {launch?.flight_number}
+        </h2>
+        <p class="text-lg text-gray-300 py-2">
+          {launch?.success ? "¡Éxito!" : "¡Fracaso!"}
+        </p>
+        <p class="text-xl text-white">{launch?.name}</p>
+        <div class="flex items-center text-gray-300 py-2">
+          <CargarImg />
+          <p class="text-lg">{launch?.date_local}</p>
+        </div>
+        <div class="flex items-center text-gray-300 py-2">
+          <CargarImg />
+          <p class="text-lg">{launch?.date_utc}</p>
+        </div>
+        <div class="flex items-center text-gray-300 py-2">
+          <CargarImg />
+          <a
+            href={launch?.links?.wikipedia}
+            target="_blank"
+            class="text-blue-500 hover:underline"
+            >Más información en Wikipedia</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="container mx-16 px-6 py-0">
+      <h3 class="text-2xl font-semibold text-white">
+        Detalles del lanzamiento
+      </h3>
+      <p class="text-lg text-gray-300 py-2">
+        {
+          launch?.details ||
+            "No hay detalles disponibles para este lanzamiento."
+        }
+      </p>
+    </div>
+  </article>
+</LayoutPage>

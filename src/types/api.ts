@@ -118,8 +118,8 @@ export type Flickr = {
 }
 
 export type Patch = {
-    small: null | string;
-    large: null | string;
+    small: string;
+    large: string;
 }
 
 export type Reddit = {
