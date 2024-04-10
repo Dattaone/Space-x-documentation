@@ -1,4 +1,5 @@
 ---
+import { getTextTranslateSpanish } from '../services/translate.ts';
 interface Props {
   id: string;
   name: string;
@@ -17,9 +18,11 @@ const detailsText =
     : details === null
       ? "Espacio en blanco: Sin detalles disponibles."
       : details?.slice(0, 100) + "...";
+
+const detailsSpanish = await getTextTranslateSpanish(detailsText);
 ---
 
-<a href={`./launches/${id}`} class="w-full rounded-lg border shadow-md bg-white-700 border-gray-700 hover:scale-105 hover:bg-gray-700 hover:border.gray-500 transition flex flex-col">
+<a href={`./launches/${id}`} class="w-full rounded-lg border shadow-md bg-white-700 border-gray-700 hover:scale-105 hover:bg-gray-800 hover:border.gray-500 transition flex flex-col">
   
     <img
       class="p-8 rounded-t-lg"
@@ -46,6 +49,6 @@ const detailsText =
       >
         {name}
       </h5>
-      <p class="mt-1 font-normal text-gray-400 text-sm">{detailsText}</p>
+      <p class="mt-1 font-normal text-gray-400 text-sm">{detailsSpanish}</p>
     </div>
 </a>

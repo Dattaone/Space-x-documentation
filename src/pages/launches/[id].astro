@@ -2,37 +2,44 @@
 import LayoutPage from "../../layouts/LayoutPage.astro";
 import CargarImg from "../../../public/CargarImg.astro";
 import { getLaunchById, getLaunches } from "../../services/spacex.ts";
+import { getTextTranslateSpanish } from "../../services/translate.ts";
 
-// para utilizar el servidor en esta parte, y sea de forma dinamica
+// para utilizar el servidor en esta parte, y sea de forma dinamica en hybrid
 export const prerender = false;
 const { id } = Astro.params;
 
 /* if(!id) return Astro.redirect('/launches'); //solo para el servidor */
 let launch;
+let detailsSpanish;
 
 if (id) {
   launch = await getLaunchById({ id });
+
+  detailsSpanish = await getTextTranslateSpanish(
+    launch?.details || "No hay detalles disponibles para este lanzamiento."
+  );
 }
 
+//forma estatica, crear todas los html para cada card
 /* export async function getStaticPaths(){
 
     const launches = await getLaunches();
 
-    /*
+    
     //forma estatica
       return launches.map(launch => ({
         params: {id: launch.id}
-    })) */
-/*
+    }))
+
     //forma manual 
-      return [
-        {params: {id: "5eb87cd9ffd86e000604b32a"}}
-    ]
+    //  return [
+    //    {params: {id: "5eb87cd9ffd86e000604b32a"}}
+    //]
 } */
 ---
 
 <LayoutPage title={`Lanzamiento ${id}`}>
-  <article class="w-5/6 mx-auto py-0 mt-0">
+  <article class="w-4/5 mx-auto py-0 mt-0">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="m-16">
         <img
@@ -45,9 +52,19 @@ if (id) {
         <h2 class="text-3xl font-semibold text-white">
           Lanzamiento {launch?.flight_number}
         </h2>
-        <p class="text-lg text-gray-300 py-2">
-          {launch?.success ? "¡Éxito!" : "¡Fracaso!"}
-        </p>
+        <div class="mt-2 mb-1">
+            <span
+              class:list={[
+                `text-md px-3 py-1 rounded  text-white tracking-widest`,
+                {
+                  "bg-green-500": launch?.success,
+                  "bg-red-500": !launch?.success,
+                },
+              ]}
+            >
+              {launch?.success ? "¡Éxito!" : "¡Fracaso!"}
+            </span>
+        </div>
         <p class="text-xl text-white">{launch?.name}</p>
         <div class="flex items-center text-gray-300 py-2">
           <CargarImg />
@@ -73,10 +90,7 @@ if (id) {
         Detalles del lanzamiento
       </h3>
       <p class="text-lg text-gray-300 py-2">
-        {
-          launch?.details ||
-            "No hay detalles disponibles para este lanzamiento."
-        }
+        {detailsSpanish || "No hay detalles disponibles para este lanzamiento."}
       </p>
     </div>
   </article>

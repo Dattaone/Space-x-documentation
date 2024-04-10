@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro"
+import { ViewTransitions } from "astro:transitions"
 
 export interface Props{
     title: string
@@ -17,6 +18,7 @@ const {title, description = ''} = Astro.props
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description}/>
+    <!-- <ViewTransitions /> -->
 </head>
 <body class="bg-gray-900 min-h-screen pb-32">
     <Header title={title}/>
