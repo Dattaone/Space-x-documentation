@@ -1,0 +1,33 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+import Arrow from "../../public/Arrow.astro";
+import LayoutPage from "../layouts/LayoutPage.astro";
+---
+
+<LayoutPage title={SITE_TITLE} , description={SITE_DESCRIPTION}>
+  <div class="w-full text-center py-20 bg-gray-800 bg-opacity-50">
+    <h1
+      class="mb-4 pb-3 text-4xl font-bold leading-none tracking-tight text-white md:text-5xl lg:text-6xl"
+    >
+      Lanzamientos de SpaceX 🚀
+    </h1>
+    <p
+      class="mb-6 text-base sm:text-lg font-semibold text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
+    >
+      Sumérgete en la emocionante aventura espacial con SpaceX. Mantente al día con los últimos lanzamientos y avances tecnológicos que están llevando a la humanidad más allá de las fronteras terrestres.
+    </p>
+    <br />
+    <a
+      href="https://www.spacex.com/"
+      target="_blank"
+      class="inline-flex items-center justify-center px-5 py-3 transition duration-200 text-base font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-600 hover:scale-105 focus:ring-4 focus:ring-blue-300"
+    >
+      Conoce mas sobre SpaceX
+      <Arrow class="w-6 h-6 text-white" />
+    </a>
+  </div>
+  <div>
+    <slot />
+  </div>
+</LayoutPage>

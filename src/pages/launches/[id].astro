@@ -1,7 +1,7 @@
 ---
 import LayoutPage from "../../layouts/LayoutPage.astro";
-import CargarImg from "../../../public/CargarImg.astro";
-import { getLaunchById, getLaunches } from "../../services/spacex.ts";
+import CargarImg from "../../../public/LoadingImage.astro";
+import { getLaunchById } from "../../services/spacex.ts";
 import { getTextTranslateSpanish } from "../../services/translate.ts";
 
 // para utilizar el servidor en esta parte, y sea de forma dinamica en hybrid
@@ -20,28 +20,12 @@ if (id) {
   );
 }
 
-//forma estatica, crear todas los html para cada card
-/* export async function getStaticPaths(){
-
-    const launches = await getLaunches();
-
-    
-    //forma estatica
-      return launches.map(launch => ({
-        params: {id: launch.id}
-    }))
-
-    //forma manual 
-    //  return [
-    //    {params: {id: "5eb87cd9ffd86e000604b32a"}}
-    //]
-} */
 ---
 
 <LayoutPage title={`Lanzamiento ${id}`}>
   <article class="w-4/5 mx-auto py-0 mt-0">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="m-16">
+      <div class="mt-6 sm:m-16 sm:mt-0">
         <img
           src={launch?.links?.patch?.small}
           alt={`Emblema del lanzamiento ${id}`}
@@ -67,15 +51,15 @@ if (id) {
         </div>
         <p class="text-xl text-white">{launch?.name}</p>
         <div class="flex items-center text-gray-300 py-2">
-          <CargarImg />
+          <CargarImg class="size-6"/>
           <p class="text-lg">{launch?.date_local}</p>
         </div>
         <div class="flex items-center text-gray-300 py-2">
-          <CargarImg />
+          <CargarImg class="size-6"/>
           <p class="text-lg">{launch?.date_utc}</p>
         </div>
         <div class="flex items-center text-gray-300 py-2">
-          <CargarImg />
+          <CargarImg class="size-6"/>
           <a
             href={launch?.links?.wikipedia}
             target="_blank"
@@ -85,7 +69,7 @@ if (id) {
         </div>
       </div>
     </div>
-    <div class="container mx-16 px-6 py-0">
+    <div class="container px-6 py-6 text-center text-pretty sm:mx-16 sm:py-0 sm:text-left">
       <h3 class="text-2xl font-semibold text-white">
         Detalles del lanzamiento
       </h3>

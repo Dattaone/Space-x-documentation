@@ -11,15 +11,19 @@ export const getLaunches = async () => {
             query: {},
             options: {
               sort: {
-                date_unix: "asc",
+                date_unix: "desc",
               },
-              limit: 120,
+              limit: 500,
             },
           }),
         });
-        //const launches = JSON.stringify(await res.json());
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+
         const { docs: launches } = (await res.json()) as APISpaceXResponse;
-        return launches
+        const launchesWithImages = launches.filter(launch => launch.links?.patch?.small)
+        return launchesWithImages;
     }catch(error){
         console.log("Error al obtener los lanzamientos",error);
         return [];

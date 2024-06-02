@@ -1,48 +1,8 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
-import Flecha from "../../public/Flecha.astro";
-import LayoutPage from "../layouts/LayoutPage.astro";
+import LayoutIndex from "../layouts/LayoutIndex.astro";
 import Launches from "../components/Launches.astro";
-
-import Paginacion from "./paginacion.astro";
 ---
+<LayoutIndex >
+  <Launches page = {1} />
+</LayoutIndex>
 
-<LayoutPage title={SITE_TITLE} , description={SITE_DESCRIPTION}>
-  <div class="w-full text-center py-20 bg-gray-800 bg-opacity-50">
-    <h1
-      class="mb-4 pb-3 text-4xl font-bold leading-none tracking-tight text-white md:text-5xl lg:text-6xl"
-    >
-      Lanzamientos de SpaceX 🚀
-    </h1>
-    <p
-      class="mb-6 text-lg font-semibold text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-    >
-      Conoce todos los lanzamientos de SpaceX en esta pagina gratuita.
-    </p>
-    <br />
-    <a
-      href="#"
-      class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-600 focus:ring-4 focus:ring-blue-300"
-    >
-      Conoce mas sobre SpaceX
-      <Flecha/>
-    </a>
-  </div>
-  <div>
-    <!-- <Paginacion /> -->
-    <Launches />
-    <div class="py-0 my-0 flex w-full min-h-screen items-center justify-center ">
-      <div class="flex select-none space-x-1 py-0 my-0">
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> Anterior </a>
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> 1 </a>
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> 2 </a>
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> 3 </a>
-        <span class="rounded-md px-4 py-2 text-white"> ... </span>
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> 10 </a>
-        <a href="#" class="rounded-md bg-gray-200 px-4 py-2 transition duration-300 hover:bg-gray-400"> Siguiente </a>
-      </div>
-    </div>
-    
-  </div>
-</LayoutPage>

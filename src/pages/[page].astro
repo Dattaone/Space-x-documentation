@@ -1,0 +1,30 @@
+---
+import { getTotalPages } from "../utils/utils.ts";
+import { PAGE_SIZE } from "../consts.ts";
+import LayoutIndex from "../layouts/LayoutIndex.astro";
+import Pagination from "../components/Pagination.astro";
+import Launches from "../components/Launches.astro";
+
+const { page } = Astro.params;
+
+if (!page) {
+  Astro.redirect("/");
+}
+
+export async function getStaticPaths() {
+  return Array.from(
+    {
+      length: await getTotalPages(PAGE_SIZE),
+    },
+    (_, i) => ({
+      params: {
+        page: `${i + 1}`, 
+      },
+    })
+  );
+}
+---
+
+<LayoutIndex>
+    <Launches page={page} />
+</LayoutIndex>

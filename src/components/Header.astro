@@ -5,19 +5,18 @@ import { SITE_TITLE } from "../consts.ts";
 
 ---
 
-<header class="px-4 py-5 pb-3 mx-auto bg-gray-800 flex justify-between">
-  <div class="flex flex-grow basis-0 px-2.5 py-0.5">
+<header class="px-4 py-5 pb-3 mx-auto bg-gray-800 flex justify-between ">
+  <div class="flex flex-grow basis-0 px-2 max-w-60 py- sm:px-2.5 sm:py-0.5 sm:max-w-none">
     <a href="/" class="flex">
-        <Imagin />
+        <Imagin class="mt-3 sm:mt-0"/>
         <h1 class="text-white px-2 py-1 text-xl">{SITE_TITLE}</h1>
     </a>
   </div>
   <div>
     <nav >
-        <ul class="flex justify-between text-white">
+        <ul class="flex justify-between text-white flex-col sm:flex-row">
             <HeaderButton href="/">Principal</HeaderButton>
-            <HeaderButton href="/about">Sobre</HeaderButton>
-            <HeaderButton href="/about">Sobre</HeaderButton>
+            <HeaderButton href="/about/">Sobre</HeaderButton>
         </ul>
     </nav>
   </div>

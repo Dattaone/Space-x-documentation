@@ -1,18 +1,23 @@
+---
+layout: ../layouts/LayoutMd.astro
+---
 # Proyecto SpaceX Launches
 
 Este proyecto es una práctica desarrollada con Astro, TypeScript y Tailwind CSS para aprender las funcionalidades de Astro. Basado en un curso del YouTuber [midudev](https://www.youtube.com/watch?v=RB5tR_nqUEw), el proyecto utiliza la API de SpaceX para mostrar información sobre lanzamientos espaciales. Se han añadido varias funcionalidades adicionales, como paginación, un menú, el uso de archivos Markdown (MD) y personalización de estilos.
 
 ## Tecnologías Utilizadas
 
-- 🚀**Astro**: Framework de construcción de sitios estáticos.
-- 📘**TypeScript**: Superset de JavaScript que añade tipos estáticos.
-- 💦**Tailwind CSS**: Framework de utilidades CSS para diseñar directamente en el HTML.
+- 🚀**Astro**           : Framework de construcción de sitios estáticos.
+- 📘**TypeScript**      : Superset de JavaScript que añade tipos estáticos.
+- 💦**Tailwind CSS**    : Framework de utilidades CSS para diseñar directamente en el HTML.
 
 ## Funcionalidades Principales
 
 ### Obtención de Lanzamientos
 
 Se utiliza la API de SpaceX para obtener datos sobre los lanzamientos. A continuación, se muestran dos funciones principales para interactuar con la API:
+
+
 
 #### Obtener Todos los Lanzamientos
 
@@ -44,6 +49,8 @@ export const getLaunches = async () => {
     }
 }
 ```
+
+
 
 #### Obtener un Lanzamiento por ID
 
